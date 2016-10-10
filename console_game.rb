@@ -1,9 +1,11 @@
 require_relative "sequentialAI.rb"
 require_relative "new_tic_tac.rb"
 require_relative "randomAI.rb"
+require_relative "human.rb"
+require_relative "unbeatable.rb"
 
 class ConsoleGame
-	attr_accessor :marker
+	attr_accessor :marker, :board, :p1, :p2, :current_player
 
 	def initialize(p1, p2)
 		@p1 = p1
@@ -44,7 +46,7 @@ class ConsoleGame
  	end	
 
  	def game_over?
- 		@board.game_won?(@current_player.marker) || @board.game_ends_in_tie?()
+ 		board.game_won?(@current_player.marker) || @board.game_ends_in_tie?()
  	end
 
 end 	

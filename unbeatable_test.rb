@@ -8,16 +8,16 @@ class TestUnbeatable < Minitest::Test
 		assert_equal("X", player.marker)
 	end
 
-	def test_choices_a_move
-		player = Unbeatable.new("X")
-		move = player.get_move([" "," "," "," "," "," "," "," "," "])
-		assert_equal(true, [0, 1, 2, 3, 4, 5, 6, 7, 8].include?(move))
-	end
-
-	def test_takes_winning_spaces
-		player = Unbeatable.new("X")
-		move = player.get_move([" "," "," ","X","X"," ","O"," ","O"])
-		assert_equal(5, move)
-	end	
 	
+	
+	def test_win_spot_for_O
+        player = Unbeatable.new("O")
+        assert_equal(3, player.get_move([" ","X","X"," ","O","O"," "," "," "]))
+        assert_equal(8, player.get_move(["O","X","O","X","O","X","X","O"," "]))
+		assert_equal(7, player.get_move(["X","O","X","X","O"," "," "," ","X"]))
+    end
+
+	
+
+
 end
