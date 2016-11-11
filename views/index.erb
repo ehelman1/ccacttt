@@ -1,11 +1,42 @@
-<body>
-    <center><h1>Welcome to Big Ed's Tic Tac Toe game.</h1></center>
-            
-    <center><img src="img/tic_tac_board.jpeg" alt="Tic Tac Toe Board" style="width:304px;height:228px;"></center>
-        
-    <center><a href="/game"><input type=submit value="Let's Play"></input></a></center>
+<h1>"Welcome to Tic-Tac-Toe!"</h1>
 
-</body>
+<br>
+
+<form action = "/output" method = "post">
+
+
+
+
+
+<body>
+
+<h4>"Player 1 is X choose your AI"<h4>
+
+<select name = "player_1">
+
+  <option value="sequential_ai">sequential_ai</option>
+
+  <option value="random_ai">random_ai</option>
+
+  <option value="human">human</option>
+
+</select>
+
+<h4>"Player 2 is O choose your AI"<h4>
+
+<select name = "player_2">
+
+	<option value="sequential_ai">sequential_ai</option>
+
+	<option value="random_ai">random_ai</option>
+
+	<option value="human">human</option>
+
+</select><br><br>
+
+
+
+<input type = "submit">
 
 
 

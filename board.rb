@@ -5,15 +5,41 @@ class Board
 		@ttt_board = [" ", " ", " ", " ", " ", " ", " ", " ", " "]
 	end
 
+	def board_with_positions()
+
+		new_board = []
+
+		ttt_board.each_with_index do |value, index|
+
+			if value == "X" || value == "O"
+
+				new_board.push(value)
+
+			else
+
+				new_board.push(index + 1)
+
+			end
+
+		end
+
+		new_board
+
+
+
+	end
+
 	def update_board(position, marker)
 		ttt_board[position] = marker
 	end
 
-	def valid_space?(position)
-	ttt_board[position] == " " && position >= 0 && position <= 8
+	def valid_spot?(position)
+		position = (position - 1)
+		ttt_board[position] == " " && position >= 0 && position <= 8
 	end
 
-	def game_ends_in_tie?
+	
+	def board_full?
 		ttt_board.count(" ") == 0
 	end
 

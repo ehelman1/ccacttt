@@ -7,13 +7,17 @@ class Human
 	end
 
 	def get_move(board)
-		puts "Pick a space"
-		move = gets.chomp.to_i
-		if board[move] == " "
-			move
-		else
-			puts "invalid space"
-			get_move(board)
-		end
+		"No"
 	end
+
+	# def get_move(board)
+	# 	puts "Pick a space"
+	# 	move = gets.chomp.to_i
+	# 	if board[move] == " "
+	# 		move
+	# 	else
+	# 		puts "invalid space"
+	# 		get_move(board)
+	# 	end
+	# end
 end
