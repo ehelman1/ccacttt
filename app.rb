@@ -70,25 +70,26 @@ end
 get '/get_move' do
     
 	move = session[:current_player].get_move(session[:board].ttt_board)
+		
 		if move == "No"
 			
 			erb :game, :locals => {:current_player => session[:current_player].marker,
         	:player_1 => session[:p1], :player_2 => session[:p2],
         	:board => session[:board].board_with_positions, :message =>" "}
 		else 
-			#session[:board].valid_spot?(move)
-			redirect '/get_move?move=' + move.to_s
+			session[:board].valid_spot?(move)
+			redirect '/make_move?move=' + move.to_s
 		# else
 		# 	redirect '/get_move'
 		end
 
-	erb :game, :locals => {:current_player => session[:current_player].marker, :player_1 => session[:p1], :player_2 => session[:p2], :board => session[:board].board_with_positions, :message =>" "}
+	#erb :game, :locals => {:current_player => session[:current_player].marker, :player_1 => session[:p1], :player_2 => session[:p2], :board => session[:board].board_with_positions, :message =>" "}
 end
 
 post '/get_move' do
 
-	move = params[:choice].to_i
-
+	move = params[:choice ].to_i
+	puts move
 	if session[:board].valid_spot?(move)
 		redirect '/make_move?move=' + move.to_s
 	else
@@ -101,7 +102,7 @@ get "/make_move" do
 
 		move = params[:move].to_i
 
-		session[:board].update_board((move - 1), session[:current_player].marker)
+		session[:board].update_board((move -1 ), session[:current_player].marker)
 
 			if session[:board].game_won?(session[:current_player].marker) == true
 				redirect "/win?current_player=session[:current_player]"
