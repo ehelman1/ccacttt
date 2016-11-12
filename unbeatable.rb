@@ -59,15 +59,29 @@ class Unbeatable
         end    
 
     open_spot = 10
+    i = 0
+    i2 = 0
+    pick = 10
 
         blocking_combinations.each_with_index do |foe, index|
             if foe.count(rival_marker) == 2 && foe.count(" ") == 1
-                rival = foe.index(" ")
                 i = index
-                open_spot = blocking_position[i][rival]             
+                open_spot = foe()             
             end
         end
-        open_spot
+
+        if open_spot == 10
+            i2 = 10
+        else 
+            i2 = open_spot.index(" ")
+        end
+
+        if blocking_position[i][i2] == nil
+            pick = 10
+        else 
+            pick = blocking_position[i][i2]
+        end
+        pick = pick + 1
     end
 end
 

@@ -89,7 +89,7 @@ end
 post '/get_move' do
 
 	move = params[:choice ].to_i
-	puts move
+	
 	if session[:board].valid_spot?(move)
 		redirect '/make_move?move=' + move.to_s
 	else
