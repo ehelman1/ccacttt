@@ -46,7 +46,7 @@ class RandomAI
 
 
 	def get_move(board)
-		# create a new array with index # with empty stings and randomly select them
+		#create a new array with index # with empty stings and randomly select them
 		# board.each_index{|i| board[i]==" "}.sample
 		# move = []
 		# i = 0
