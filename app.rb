@@ -4,7 +4,7 @@ require_relative "sequentialAI.rb"
 require_relative "unbeatable.rb"
 require_relative "randomAI.rb"
 require_relative "human.rb"
-#require_relative "aws/s3"
+
 
 enable :sessions
 
@@ -25,19 +25,9 @@ post "/output" do
 
 
 		session[:p1] = Human.new("X")
-	#  if player_1 == "human"
+	 	
 
-	#  	session[:p1] = Human.new("X")	
-
-	#  elsif player_1 == "sequential_ai"
-
-	#  	session[:p1] = SequentialAI.new("X")	
-
-	#  else player_1 == "random_ai"
-
-	#  	session[:p1] = RandomAI.new("X")	
-
-	#  end
+	 
 
 		
 
@@ -48,6 +38,10 @@ post "/output" do
 	elsif player_2 == "sequential_ai"
 
 		session[:p2] = SequentialAI.new("O")	
+
+	elsif player_2 == "random"
+		
+		session[:p2] = RandomAI.new("O")
 
 	else player_2 == "unbeatable"
 
@@ -79,11 +73,10 @@ get '/get_move' do
 		else 
 			session[:board].valid_spot?(move)
 			redirect '/make_move?move=' + move.to_s
-		# else
-		# 	redirect '/get_move'
+		
 		end
 
-	#erb :game, :locals => {:current_player => session[:current_player].marker, :player_1 => session[:p1], :player_2 => session[:p2], :board => session[:board].board_with_positions, :message =>" "}
+	
 end
 
 post '/get_move' do
