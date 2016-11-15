@@ -25,21 +25,21 @@ post "/output" do
 
 
 		session[:p1] = Human.new("X")
-	# if player_1 == "human"
+	#  if player_1 == "human"
 
-	# 	session[:p1] = Human.new("X")	
+	#  	session[:p1] = Human.new("X")	
 
-	# elsif player_1 == "sequential_ai"
+	#  elsif player_1 == "sequential_ai"
 
-	# 	session[:p1] = SequentialAI.new("X")	
+	#  	session[:p1] = SequentialAI.new("X")	
 
-	# else player_1 == "random_ai"
+	#  else player_1 == "random_ai"
 
-	# 	session[:p1] = RandomAI.new("X")	
+	#  	session[:p1] = RandomAI.new("X")	
 
-	# end
+	#  end
 
-		# session[:p2] = Human.new("O")
+		
 
 	if player_2 == "human"
 
@@ -49,9 +49,9 @@ post "/output" do
 
 		session[:p2] = SequentialAI.new("O")	
 
-	else player_2 == "random_ai"
+	else player_2 == "unbeatable"
 
-		session[:p2] = RandomAI.new("O")	
+		session[:p2] = UnbeatableAI.new("O")	
 
 	end
 
