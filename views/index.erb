@@ -1,3 +1,6 @@
+
+
+
 <h1>Welcome to Tic-Tac-Toe!</h1>
 
 <br>
@@ -9,12 +12,12 @@
 
 
 <body>
-
-
+<h1>Player one what is your name?</h1>
+<input type="text" name="name"></input>
 
 <h2>"Choose your opponent"</h2>
 
-<select name = "player_2">
+<select name = "player_2" onchange="showfield(this.options[this.selectedIndex].value)">
 
 	<option value="sequential_ai">Easy</option>
 
@@ -23,9 +26,10 @@
   <option value="unbeatable">Hard</option>
 
 	<option value="human">Human</option>
+	
 
 </select><br><br>
-
+<div id="div1"></div>
 
 
 <input type = "submit">

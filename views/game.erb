@@ -11,8 +11,16 @@
  </tr>
 </table>
 </form>
- <%=  current_player %> it is your turn pick a valid spot.<br>
- <%= message%>
+<% if current_player == "X" %>
+    <%=  name %> it is your turn pick a valid spot.
+
+<% else %>
+
+    <%= p2name %> it is your turn pick a valid spot.
+
+<% end %>
+ <br>
+ 
 
 
 

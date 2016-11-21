@@ -23,17 +23,22 @@ post "/output" do
 
 	player_2 = params[:player_2]
 
+	
 
-		session[:p1] = Human.new("X")
+	session[:name] = params[:name]
+	session[:p2name] = params[:p2name] || session[:p2name] = "sweet muffins"
+	
+		session[:p1] = Human.new("X", session[:name])
 	 	
 
-	 
+
+	 #name is refered with the human anytime it is used. 
 
 		
 
 	if player_2 == "human"
 
-		session[:p2] = Human.new("O")
+		session[:p2] = Human.new("O", session[:p2name])
 
 	elsif player_2 == "sequential_ai"
 
@@ -50,14 +55,14 @@ post "/output" do
 	end
 
 
-
+	
 	session[:current_player] = session[:p1]
     
 
-	erb :game, :locals => {:current_player => session[:current_player].marker,
+	erb :game, :locals => {:current_player => session[:current_player].marker,:name =>session[:name], :p2name =>session[:p2name],
                            :player_1 => session[:p1], :player_2 => session[:p2],
                            :board => session[:board].board_with_positions, 
-                           :message =>" "}
+                           :message =>""}
 
 end
 
@@ -67,8 +72,8 @@ get '/get_move' do
 		
 		if move == "No"
 			
-			erb :game, :locals => {:current_player => session[:current_player].marker,
-        	:player_1 => session[:p1], :player_2 => session[:p2],
+			erb :game, :locals => {:current_player => session[:current_player].marker,:name =>session[:name],
+        	:player_1 => session[:p1], :player_2 => session[:p2], :p2name => session[:p2name],
         	:board => session[:board].board_with_positions, :message =>" "}
 		else 
 			session[:board].valid_spot?(move)
@@ -116,7 +121,7 @@ end
 get "/win" do
     current_player = session[:current_player].marker
 
-	erb :win, :locals => {:current_player => session[:current_player].marker}
+	erb :win, :locals => {:current_player => session[:current_player].marker, :name =>session[:name], :p2name =>session[:p2name] }
 
 end
 

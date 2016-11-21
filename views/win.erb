@@ -1,5 +1,8 @@
 
-<h2><%= current_player %> is the WINNER</h2>
-
+<% if current_player == "X"%>
+   <h2> <%= name %> is the WINNER!</h2>
+<% else %>
+    <h2> <%= p2name %> is the WINNER!</h2>
+<% end %>
 <h2 id='header'><a href = "/">New Game</a></h2>
 
