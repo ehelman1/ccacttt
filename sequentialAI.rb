@@ -1,9 +1,10 @@
 class SequentialAI
 
-	attr_accessor :marker
+	attr_accessor :marker, :name
 
-	def initialize(marker)
+	def initialize(marker, name)
 		@marker = marker
+		@name = name
 	end
 
 	def get_move(board)
