@@ -25,10 +25,10 @@ post "/output" do
 
 	
 
-	session[:name] = params[:name]
-	session[:p2name] = params[:p2name] || session[:p2name] = "sweet muffins"
+	name = params[:name]
+	p2name = params[:p2name] || p2name = "sweet muffins"
 	
-		session[:p1] = Human.new("X", session[:name])
+		player_1 = Human.new("X", name)
 	 	
 
 
@@ -38,29 +38,29 @@ post "/output" do
 
 	if player_2 == "human"
 
-		session[:p2] = Human.new("O", session[:p2name])
+		player_2 = Human.new("O", p2name)
 
 	elsif player_2 == "sequential_ai"
 
-		session[:p2] = SequentialAI.new("O")	
+		player_2 = SequentialAI.new("O", p2name)	
 
 	elsif player_2 == "random"
 		
-		session[:p2] = RandomAI.new("O")
+		player_2 = RandomAI.new("O", p2name)
 
 	else player_2 == "unbeatable"
 
-		session[:p2] = UnbeatableAI.new("O")	
+		player_2 = UnbeatableAI.new("O", p2name)	
 
 	end
 
 
 	
-	session[:current_player] = session[:p1]
+	session[:current_player] = player_1
     
 
-	erb :game, :locals => {:current_player => session[:current_player].marker,:name =>session[:name], :p2name =>session[:p2name],
-                           :player_1 => session[:p1], :player_2 => session[:p2],
+	erb :game, :locals => {:current_player => session[:current_player].marker,:name => name, :p2name => p2name,
+                           #:player_1 => session[:p1], :player_2 => session[:p2],
                            :board => session[:board].board_with_positions, 
                            :message =>""}
 
@@ -72,8 +72,9 @@ get '/get_move' do
 		
 		if move == "No"
 			
-			erb :game, :locals => {:current_player => session[:current_player].marker,:name =>session[:name],
-        	:player_1 => session[:p1], :player_2 => session[:p2], :p2name => session[:p2name],
+			erb :game, :locals => {:current_player => session[:current_player].marker,:name => session[:current_player].name,
+        	# :player_1 => session[:p1], :player_2 => session[:p2], 
+			:p2name => session[:current_player].name,
         	:board => session[:board].board_with_positions, :message =>" "}
 		else 
 			session[:board].valid_spot?(move)
@@ -99,7 +100,8 @@ end
 get "/make_move" do
 
 		move = params[:move].to_i
-
+		player_1 = params[:player_1]
+		player_2 = params[:player_2]
 		session[:board].update_board((move -1 ), session[:current_player].marker)
 
 			if session[:board].game_won?(session[:current_player].marker) == true
@@ -109,9 +111,9 @@ get "/make_move" do
 				redirect "/tie"
 			else
 				if session[:current_player].marker == "X"
-					session[:current_player] = session[:p2]
+					session[:current_player] = player_2
 				else
-					session[:current_player] = session[:p1]
+					session[:current_player] = player_1
 				end
 			end
 		redirect '/get_move'
@@ -119,9 +121,9 @@ get "/make_move" do
 end
 
 get "/win" do
-    current_player = session[:current_player].marker
+    current_player = session[:current_player].name
 
-	erb :win, :locals => {:current_player => session[:current_player].marker, :name =>session[:name], :p2name =>session[:p2name] }
+	erb :win, :locals => {:current_player => session[:current_player].name} #, :name =>session[:current_player].name, :p2name =>session[:current_player].name }
 
 end
 
