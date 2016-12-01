@@ -60,14 +60,17 @@ post "/output" do
     
 
 	erb :game, :locals => {:current_player => session[:current_player].marker,:name => name, :p2name => p2name,
-                           #:player_1 => session[:p1], :player_2 => session[:p2],
+                           #:player_1 => name, #:player_2 => session[:p2],
                            :board => session[:board].board_with_positions, 
-                           :message =>""}
+                           :message =>"", :player_1 => player_1}
 
 end
 
 get '/get_move' do
-    
+    player_1 = params[:player1]
+	player_2 =
+	
+	current_player = session[:current_player]
 	move = session[:current_player].get_move(session[:board].ttt_board)
 		
 		if move == "No"
@@ -134,15 +137,4 @@ get "/tie" do
 	erb :tie
 
 end
-
-
-
-
-
-
-
-
-
-
-
 
